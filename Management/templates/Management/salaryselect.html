@@ -1,0 +1,48 @@
+<html>
+<body>
+<div>
+    <br>
+<a href="{% url 'home' %}">Go back</a><br>
+<h2>Salary Details for Employee : {{ employee.username }}</h2>
+<p><ul>
+    <li><b>First Name :</b> {{ employee.firstName }}<br></li>
+    <li><b>Last  Name :</b> {{ employee.lastName }}<br></li>
+    <li><b>Date of Birth :</b> {{ employee.dob }}<br></li>
+    <li><b>Contact number :</b> {{ employee.contact}}<br></li>
+    <li><b>Address :</b> {{ employee.address}}<br></li>
+    <li><b>Email :</b> {{ employee.email }}<br></li>
+    <li><b>CTC salary  :</b> {{ employee.CTC }} USD <br></li>
+    <li><b>Department  :</b> {{ employee.department}}<br></li>
+    <li><b>Desigination  :</b> {{ employee.desigination }}<br></li>
+</ul></p>
+<h2>Select a month and year : </h2><br>
+<form action="{% url 'salarydetails' username=employee.username year=year month= month %}"  method="post">{% csrf_token %}
+    <label for="month">Month:</label><br>
+    <input list="months" id="month" name="month" maxlength="100" required>
+        <datalist id="months">
+            {% if months %}
+                {% for month in months %}
+                    <option value="{{ month }}">
+                {% endfor %}
+            {% else %}
+                <option value="No records">
+            {% endif %}
+        </datalist>
+    <br>
+    <label for="year">Year:</label><br>
+    <input list="years" id="year" name="year" maxlength="100" required>
+        <datalist id="years">
+            {% if years %}
+                {% for year in years %}
+                    <option value="{{ year }}">
+                {% endfor %}
+            {% else %}
+                <option value="No records">
+            {% endif %}
+        </datalist>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+</div>
+</body>
+</html>
