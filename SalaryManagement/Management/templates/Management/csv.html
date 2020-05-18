@@ -1,0 +1,16 @@
+{% extends 'Management/base.html' %}
+
+{% block content %}
+    <div>
+        <form method="POST" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            {{ form.as_p }}
+               <p>{{sub}}</p>
+
+                <button type="submit"> Import </button>
+        </form>
+    </div>
+    <br />
+
+{% endblock %}
